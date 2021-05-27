@@ -7,8 +7,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_sqlite/about.dart';
+import 'package:flutter_sqlite/about.dart';
 
-import 'package:layout_flutter/main.dart';
+import 'package:flutter_sqlite/detailproduk.dart';
+import 'package:flutter_sqlite/ui/home.dart';
+import 'package:flutter_sqlite/isianpemesanan.dart';
+import 'package:flutter_sqlite/chat.dart';
+import 'package:flutter_sqlite/main.dart';
+import 'package:flutter_sqlite/pemesanan.dart';
+import 'package:flutter_sqlite/produklist.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

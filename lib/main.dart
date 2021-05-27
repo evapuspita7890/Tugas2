@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'beranda.dart' as beranda;
 import 'produklist.dart' as listproduk;
+import 'detailproduk.dart' as detailproduk;
 
 void main() {
   runApp(new MaterialApp(
@@ -26,10 +25,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   @override
   // ignore: missing_return
-  Void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +34,14 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           children: <Widget>[
             new beranda.Beranda(),
             new listproduk.ProdukList(),
+            //new beranda.Kategori(),
           ],
         ),
         bottomNavigationBar: new Material(
           color: Colors.green,
           child: new TabBar(controller: controller, tabs: <Widget>[
             new Tab(icon: new Icon(Icons.home)),
-            new Tab(icon: new Icon(Icons.list))
+            new Tab(icon: new Icon(Icons.list_rounded)),
           ]),
         ));
   }

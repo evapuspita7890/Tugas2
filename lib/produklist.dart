@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sqlite/ui/entryform.dart';
+import 'package:flutter_sqlite/ui/entryform.dart';
+import 'package:flutter_sqlite/models/contact.dart';
+
+import 'package:flutter_sqlite/ui/home.dart';
 import 'detailproduk.dart';
 
 class ProdukList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Katalog")),
+      appBar: AppBar(
+        title: Text("Katalog"),
+        backgroundColor: Colors.green,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              print('Click search');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.camera_alt_outlined),
+            onPressed: () {
+              print('click search gambar');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.shopping_cart_rounded),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext) => Home(),
+              ),
+            ),
+          )
+        ],
+      ),
       body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
@@ -15,10 +45,9 @@ class ProdukList extends StatelessWidget {
               Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => DetailProduk(
                         name: "Ayam Rica-Rica",
-                        description:
-                            "1 Paket terdiri dari ayam serta 1 paket bumbu ",
+                        description: "1 Paket terdiri dari ayam serta 1 paket bumbu ",
                         price: 15000,
-                        image: "ayamrica.jpeg",
+                        image: "ayamrica1.jpeg",
                         star: 1,
                       )));
             },
@@ -35,8 +64,7 @@ class ProdukList extends StatelessWidget {
               Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => DetailProduk(
                         name: "Bakso",
-                        description:
-                            "1 Paket terdiri dari pentol, mie, sayur kol, 1 peket bumbu",
+                        description: "1 Paket terdiri dari pentol, mie, sayur kol, 1 peket bumbu",
                         price: 15000,
                         image: "bakso.jpeg",
                         star: 3,
@@ -75,8 +103,7 @@ class ProdukList extends StatelessWidget {
               Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => DetailProduk(
                         name: "Sate",
-                        description:
-                            "1 paket terdiri dari 8 buah sate dan 1 paket bumbu masakan",
+                        description: "1 paket terdiri dari 8 buah sate dan 1 paket bumbu masakan",
                         price: 10000,
                         image: "sate.jpeg",
                         star: 3,
@@ -117,8 +144,7 @@ class ProdukList extends StatelessWidget {
 }
 
 class ProductBox extends StatelessWidget {
-  ProductBox(
-      {Key key, this.name, this.description, this.price, this.image, this.star})
+  ProductBox({Key key, this.name, this.description, this.price, this.image, this.star})
       : super(key: key);
   final String name;
   final String description;
@@ -138,35 +164,32 @@ class ProductBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       //height: 120
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(
-              "assets/appimages/" + image,
-              width: 150,
-            ),
-            Expanded(
-              child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(this.name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text(this.description),
-                      Text("Price: " + this.price.toString(),
-                          style: TextStyle(color: Colors.blueAccent)),
-                      Row(children: <Widget>[
-                        Row(
-                          children: children,
-                        )
-                      ])
-                    ],
-                  )),
-            )
-          ]),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
+        Image.asset(
+          "assets/appimages/" + image,
+          width: 85,
+        ),
+        Expanded(
+          child: Container(
+              padding: EdgeInsets.all(5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(this.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text(this.description),
+                  Text("Price: " + this.price.toString(), style: TextStyle(color: Colors.green)),
+                  Row(children: <Widget>[
+                    Row(
+                      children: children,
+                    )
+                  ])
+                ],
+              )),
+        )
+      ]),
     );
   }
 }

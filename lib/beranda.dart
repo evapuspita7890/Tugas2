@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sqlite/about.dart';
+import 'package:flutter_sqlite/chat.dart';
+import 'package:flutter_sqlite/detailproduk.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -10,11 +13,10 @@ class _BerandaState extends State<Beranda> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Beranda'),
-              ]),
+          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            Text('Beranda'),
+          ]),
+          backgroundColor: Colors.green,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.search),
@@ -51,28 +53,35 @@ class _BerandaState extends State<Beranda> {
                   ),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/appimages/profile3.jpg'),
-                        fit: BoxFit.cover),
+                        image: AssetImage('assets/appimages/profile3.jpg'), fit: BoxFit.cover),
                   )),
               new ListTile(
-                title: new Text('Notifikasi'),
-                trailing: new Icon(Icons.notifications_active_rounded),
-              ),
+                  title: new Text('Pesan'),
+                  trailing: new Icon(
+                    Icons.shopping_cart_rounded,
+                    color: Colors.green,
+                  ),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext) => DetailProduk()))),
               new ListTile(
-                title: new Text('Keranjang'),
-                trailing: new Icon(Icons.shopping_cart),
-              ),
-              new ListTile(
-                title: new Text('Chat'),
-                trailing: new Icon(Icons.chat_bubble),
-              ),
+                  title: new Text('Chat'),
+                  trailing: new Icon(
+                    Icons.chat_bubble,
+                    color: Colors.green,
+                  ),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext) => Chat()))),
               Divider(
                 height: 2,
               ),
               new ListTile(
-                title: new Text('Akun'),
-                trailing: new Icon(Icons.account_box),
-              ),
+                  title: new Text('About'),
+                  trailing: new Icon(
+                    Icons.info_outline_rounded,
+                    color: Colors.green,
+                  ),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext) => About()))),
             ],
           ),
         ),
@@ -89,8 +98,7 @@ class _BerandaState extends State<Beranda> {
                     children: [
                       Text(
                         'Masak Apa Saja Jadi Mudah',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
                         'Rp 90.000',
@@ -112,8 +120,7 @@ class _BerandaState extends State<Beranda> {
           Container(
             padding: EdgeInsets.only(top: 10, bottom: 10),
             decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: Theme.of(context).dividerColor)),
+              border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,91 +129,7 @@ class _BerandaState extends State<Beranda> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.grid_on, color: Colors.blueGrey),
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        'Semua Kategori',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.shop, color: Colors.blueGrey),
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        'Daging Ayam',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.shopping_bag_rounded, color: Colors.blueGrey),
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        'Daging Ikan Laut',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.shop_two, color: Colors.blueGrey),
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        'Sayur',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: Theme.of(context).dividerColor)),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.money_off_outlined, color: Colors.blueGrey),
+                    Icon(Icons.money_off_outlined, color: Colors.green),
                     Container(
                       margin: const EdgeInsets.only(top: 8),
                       child: Text(
@@ -224,7 +147,7 @@ class _BerandaState extends State<Beranda> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.shop_two, color: Colors.blueGrey),
+                    Icon(Icons.shop_two, color: Colors.green),
                     Container(
                       margin: const EdgeInsets.only(top: 8),
                       child: Text(
@@ -242,7 +165,7 @@ class _BerandaState extends State<Beranda> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.archive_sharp, color: Colors.blueGrey),
+                    Icon(Icons.archive_sharp, color: Colors.green),
                     Container(
                       margin: const EdgeInsets.only(top: 8),
                       child: Text(
