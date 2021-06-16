@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/about.dart';
 import 'package:flutter_sqlite/chat.dart';
 import 'package:flutter_sqlite/detailproduk.dart';
+import 'package:flutter_sqlite/login/formlogin.dart';
+import 'package:flutter_sqlite/login/login_page.dart';
+import 'package:flutter_sqlite/login/inputlogin.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -13,9 +16,11 @@ class _BerandaState extends State<Beranda> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            Text('Beranda'),
-          ]),
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Beranda'),
+              ]),
           backgroundColor: Colors.green,
           actions: <Widget>[
             IconButton(
@@ -25,11 +30,9 @@ class _BerandaState extends State<Beranda> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.camera_alt_outlined),
-              onPressed: () {
-                print('click search gambar');
-              },
-            ),
+                icon: Icon(Icons.camera_alt_outlined),
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext) => LoginPage()))),
             IconButton(
               icon: Icon(Icons.notifications_active),
               onPressed: () {
@@ -53,7 +56,8 @@ class _BerandaState extends State<Beranda> {
                   ),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/appimages/profile3.jpg'), fit: BoxFit.cover),
+                        image: AssetImage('assets/appimages/profile3.jpg'),
+                        fit: BoxFit.cover),
                   )),
               new ListTile(
                   title: new Text('Pesan'),
@@ -61,16 +65,16 @@ class _BerandaState extends State<Beranda> {
                     Icons.shopping_cart_rounded,
                     color: Colors.green,
                   ),
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext) => DetailProduk()))),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext) => DetailProduk()))),
               new ListTile(
                   title: new Text('Chat'),
                   trailing: new Icon(
                     Icons.chat_bubble,
                     color: Colors.green,
                   ),
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext) => Chat()))),
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext) => Chat()))),
               Divider(
                 height: 2,
               ),
@@ -80,8 +84,8 @@ class _BerandaState extends State<Beranda> {
                     Icons.info_outline_rounded,
                     color: Colors.green,
                   ),
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext) => About()))),
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext) => About()))),
             ],
           ),
         ),
@@ -98,7 +102,8 @@ class _BerandaState extends State<Beranda> {
                     children: [
                       Text(
                         'Masak Apa Saja Jadi Mudah',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
                         'Rp 90.000',
@@ -120,7 +125,8 @@ class _BerandaState extends State<Beranda> {
           Container(
             padding: EdgeInsets.only(top: 10, bottom: 10),
             decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
+              border: Border(
+                  bottom: BorderSide(color: Theme.of(context).dividerColor)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

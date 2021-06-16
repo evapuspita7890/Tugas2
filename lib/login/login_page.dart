@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/beranda.dart';
-import 'package:flutter_sqlite/controler.dart';
 import 'package:flutter_sqlite/login/formlogin.dart';
 import 'package:flutter_sqlite/ui/entryform.dart';
 import 'package:flutter_sqlite/ui/home.dart';
-
-void main() {
-  runApp(new MaterialApp(
-    title: "tab Bar",
-    home: new LoginPage(),
-  ));
-}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -122,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                   emailController.text.toString() == email) {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
+                    MaterialPageRoute(builder: (context) => Beranda()),
                     (Route<dynamic> route) => false);
               }
             },

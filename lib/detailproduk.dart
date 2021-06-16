@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/ui/home.dart';
+import 'package:flutter_sqlite/login/login_page.dart';
 
 class DetailProduk extends StatefulWidget {
   DetailProduk(
@@ -77,6 +78,11 @@ class _DetailProdukState extends State<DetailProduk> {
                     Row(
                       children: childrenstar,
                     ),
+                    IconButton(
+                        icon: Icon(Icons.camera_alt_outlined),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (BuildContext) => LoginPage()))),
                     new Container(
                       child: new Text(
                         this.widget.price.toString(),

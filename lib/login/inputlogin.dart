@@ -5,25 +5,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sqlite/ui/home.dart';
 import 'package:http/http.dart' as http;
 
-class FormInput extends StatefulWidget {
+class InputLogin extends StatefulWidget {
   @override
-  _FormInputState createState() => _FormInputState();
+  _InputLogin createState() => _InputLogin();
 }
 
-class _FormInputState extends State<FormInput> {
+class _InputLogin extends State<InputLogin> {
   final _formkey = GlobalKey<FormState>();
-  TextEditingController namaController = TextEditingController();
-  TextEditingController keteranganController = TextEditingController();
-  TextEditingController hargaController = TextEditingController();
-  TextEditingController jumlahController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   Future saveUpload() async {
     final response =
-        await http.post(Uri.parse("http://10.10.22.89/api/inputs"), body: {
-      "nama_pesanan": namaController.text,
-      "keterangan": keteranganController.text,
-      "harga": hargaController.text,
-      "jumlah": jumlahController.text,
+        await http.post(Uri.parse("http://192.168.1.28/api/inputs"), body: {
+      "email": emailController.text,
+      "password": passwordController.text,
     });
     return jsonDecode(response.body);
   }
@@ -43,10 +39,10 @@ class _FormInputState extends State<FormInput> {
               Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: TextField(
-                  controller: namaController,
+                  controller: emailController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      labelText: "Nama Pesanan",
+                      labelText: "Email",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5))),
                 ),
@@ -54,32 +50,10 @@ class _FormInputState extends State<FormInput> {
               Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: TextField(
-                  controller: keteranganController,
+                  controller: passwordController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      labelText: "Keterangan",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
-                child: TextField(
-                  controller: hargaController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                      labelText: "Harga",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
-                child: TextField(
-                  controller: jumlahController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                      labelText: "Jumlah",
+                      labelText: "Password",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5))),
                 ),
@@ -94,7 +68,7 @@ class _FormInputState extends State<FormInput> {
                         color: Colors.green,
                         textColor: Colors.white,
                         child: Text(
-                          'Beli',
+                          'Login',
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
@@ -109,21 +83,49 @@ class _FormInputState extends State<FormInput> {
                         },
                       ),
                     ),
-                    Container(
-                      width: 5.0,
-                    ),
-                    // tombol batal
-                    Expanded(
-                      child: RaisedButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Text(
-                          'Batal',
-                          textScaleFactor: 1.5,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                      child: Row(
+                        children: <Widget>[
+                          // tombol simpan
+                          Expanded(
+                            child: RaisedButton(
+                              color: Colors.green,
+                              textColor: Colors.white,
+                              child: Text(
+                                'With Google',
+                                textScaleFactor: 1.5,
+                              ),
+                              onPressed: () {
+                                if (_formkey.currentState.validate()) {
+                                  saveUpload().then((value) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Home()));
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                          Container(
+                            width: 5.0,
+                          ),
+                          // tombol batal
+                          Expanded(
+                            child: RaisedButton(
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              child: Text(
+                                'Batal',
+                                textScaleFactor: 1.5,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

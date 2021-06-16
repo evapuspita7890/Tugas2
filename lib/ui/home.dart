@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  final String url = "http://10.10.30.57/api/inputs";
+  final String url = "http://10.10.22.89/api/inputs";
   Future getInput() async {
     var response = await http.get(Uri.parse(url));
     print(jsonDecode(response.body));
@@ -22,7 +22,7 @@ class HomeState extends State<Home> {
   }
 
   Future deleteData(String dataId) async {
-    final String url = "http://10.10.30.57/api/inputs/" + dataId;
+    final String url = "http://10.10.22.89/api/inputs/" + dataId;
     var response = await http.delete(Uri.parse(url));
 
     return jsonDecode(response.body);
