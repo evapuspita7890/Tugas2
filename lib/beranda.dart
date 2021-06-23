@@ -3,6 +3,8 @@ import 'package:flutter_sqlite/about.dart';
 import 'package:flutter_sqlite/chat.dart';
 import 'package:flutter_sqlite/detailproduk.dart';
 
+import 'login/auth.dart';
+
 class Beranda extends StatefulWidget {
   @override
   _BerandaState createState() => _BerandaState();
@@ -25,11 +27,9 @@ class _BerandaState extends State<Beranda> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.camera_alt_outlined),
-              onPressed: () {
-                print('click search gambar');
-              },
-            ),
+                icon: Icon(Icons.camera_alt_outlined),
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext) => LoginPage()))),
             IconButton(
               icon: Icon(Icons.notifications_active),
               onPressed: () {
@@ -82,6 +82,17 @@ class _BerandaState extends State<Beranda> {
                   ),
                   onTap: () => Navigator.of(context)
                       .push(MaterialPageRoute(builder: (BuildContext) => About()))),
+              Divider(
+                height: 2,
+              ),
+              new ListTile(
+                  title: new Text('Logout'),
+                  trailing: new Icon(
+                    Icons.account_circle_outlined,
+                    color: Colors.green,
+                  ),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext) => LoginPage()))),
             ],
           ),
         ),

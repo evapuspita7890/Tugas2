@@ -1,48 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'beranda.dart' as beranda;
-import 'produklist.dart' as listproduk;
-import 'detailproduk.dart' as detailproduk;
+import 'package:flutter_sqlite/beranda.dart';
+import 'package:flutter_sqlite/controler.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    title: "tab Bar",
-    home: new MyApp(),
-  ));
+import 'package:flutter_sqlite/ui/entryform.dart';
+import 'package:flutter_sqlite/ui/home.dart';
+import 'package:provider/provider.dart';
+
+import 'login/auth.dart';
+import 'login/auth1.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  TabController controller;
-  @override
-  void initState() {
-    controller = new TabController(length: 2, vsync: this);
-    super.initState();
-  }
-
-  @override
-  // ignore: missing_return
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: new TabBarView(
-          controller: controller,
-          children: <Widget>[
-            new beranda.Beranda(),
-            new listproduk.ProdukList(),
-            //new beranda.Kategori(),
-          ],
-        ),
-        bottomNavigationBar: new Material(
-          color: Colors.green,
-          child: new TabBar(controller: controller, tabs: <Widget>[
-            new Tab(icon: new Icon(Icons.home)),
-            new Tab(icon: new Icon(Icons.list_rounded)),
-          ]),
-        ));
+    return ChangeNotifierProvider(
+      create: (ctx) => Auth(),
+      builder: (context, child) => MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.green),
+        debugShowCheckedModeBanner: false,
+        home: LoginPage(),
+      ),
+    );
   }
 }

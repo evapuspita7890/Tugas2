@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sqlite/ui/home.dart';
 import 'package:http/http.dart' as http;
 
-class FormInput extends StatefulWidget {
+class Sigin extends StatefulWidget {
   @override
-  _FormInputState createState() => _FormInputState();
+  _SiginState createState() => _SiginState();
 }
 
-class _FormInputState extends State<FormInput> {
+class _SiginState extends State<Sigin> {
   final _formkey = GlobalKey<FormState>();
   TextEditingController namaController = TextEditingController();
   TextEditingController keteranganController = TextEditingController();
@@ -18,7 +18,8 @@ class _FormInputState extends State<FormInput> {
   TextEditingController jumlahController = TextEditingController();
 
   Future saveUpload() async {
-    final response = await http.post(Uri.parse("http://10.10.22.89/api/inputs"), body: {
+    final response =
+        await http.post(Uri.parse("http://10.10.22.89/api/inputs"), body: {
       "nama_pesanan": namaController.text,
       "keterangan": keteranganController.text,
       "harga": hargaController.text,
@@ -42,21 +43,34 @@ class _FormInputState extends State<FormInput> {
               Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: TextField(
-                  controller: keteranganController,
+                  controller: namaController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      labelText: "Keterangan",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+                      labelText: "Nama Lengkap",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: TextField(
-                  controller: jumlahController,
+                  controller: keteranganController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      labelText: "Jumlah",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5))),
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5))),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20, bottom: 20),
+                child: TextField(
+                  controller: hargaController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                      labelText: "Password",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5))),
                 ),
               ),
               Padding(
@@ -76,7 +90,9 @@ class _FormInputState extends State<FormInput> {
                           if (_formkey.currentState.validate()) {
                             saveUpload().then((value) {
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => Home()));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Home()));
                             });
                           }
                         },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/ui/edit.dart';
-import 'package:flutter_sqlite/ui/entryform.dart';
+import 'package:flutter_sqlite/sigin/entryform.dart';
 import 'package:flutter_sqlite/models/contact.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -8,12 +8,12 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 //pendukung program asinkron
 
-class Home extends StatefulWidget {
+class HomeSigin extends StatefulWidget {
   @override
-  HomeState createState() => HomeState();
+  HomeSiginState createState() => HomeSiginState();
 }
 
-class HomeState extends State<Home> {
+class HomeSiginState extends State<HomeSigin> {
   final String url = "http://10.10.22.89/api/inputs";
   Future getInput() async {
     var response = await http.get(Uri.parse(url));
@@ -32,7 +32,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Pesanan'),
+        title: Text('Sigin Account'),
         backgroundColor: Colors.green,
       ),
       floatingActionButton: FloatingActionButton(
@@ -40,7 +40,7 @@ class HomeState extends State<Home> {
           child: Icon(Icons.add),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => FormInput()));
+                context, MaterialPageRoute(builder: (context) => Sigin()));
           }),
       body: FutureBuilder(
           future: getInput(),
@@ -98,9 +98,15 @@ class HomeState extends State<Home> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                             Text("Nama Pesanan : " +
+                                                snapshot.data['data'][index]
+                                                    ['nama_pesanan']),
                                             Text("Keterangan :" +
                                                 snapshot.data['data'][index]
                                                     ['keterangan']),
+                                            Text("Harga :" +
+                                                snapshot.data['data'][index]
+                                                    ['harga']),
                                             Text("Jumlah :" +
                                                 snapshot.data['data'][index]
                                                     ['jumlah']),

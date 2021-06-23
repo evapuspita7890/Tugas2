@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sqlite/ui/home.dart';
+import 'package:flutter_sqlite/sigin/home.dart';
+import 'package:flutter_sqlite/ui/entryform.dart';
+
+import 'login/auth.dart';
 
 class DetailProduk extends StatefulWidget {
-  DetailProduk(
-      {Key key, this.name, this.description, this.price, this.image, this.star})
+  DetailProduk({Key key, this.name, this.description, this.price, this.image, this.star})
       : super(key: key);
   final String name;
   final String description;
@@ -45,9 +47,9 @@ class _DetailProdukState extends State<DetailProduk> {
             ),
             IconButton(
                 icon: Icon(Icons.shopping_cart_rounded),
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext) => Home(),
-                    )))
+                onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext) => FormInput()),
+                    ))
           ]),
       body: new Container(
           width: double.infinity,
@@ -77,6 +79,10 @@ class _DetailProdukState extends State<DetailProduk> {
                     Row(
                       children: childrenstar,
                     ),
+                    IconButton(
+                        icon: Icon(Icons.shopping_cart_sharp),
+                        onPressed: () => Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (BuildContext) => FormInput()))),
                     new Container(
                       child: new Text(
                         this.widget.price.toString(),
